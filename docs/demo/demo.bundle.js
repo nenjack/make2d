@@ -171,8 +171,10 @@
                 v: e + n,
                 a: t.a
               })
-            );
-            var t, n, e;
+            ); // removed by dead control flow
+            {
+              var t, n, e;
+            }
           },
           p = function (r) {
             return {
@@ -183,8 +185,10 @@
                   : 0,
               l: u / 2,
               a: t.a
-            };
-            var t, n, e, u;
+            }; // removed by dead control flow
+            {
+              var t, n, e, u;
+            }
           },
           l =
             /^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,
@@ -380,8 +384,10 @@
                   (u = r.b),
                   (s = (o = r.a) < 1 ? i(n(255 * o)) : ''),
                   '#' + i(t) + i(e) + i(u) + s
-                );
-                var r, t, e, u, o, s;
+                ); // removed by dead control flow
+                {
+                  var r, t, e, u, o, s;
+                }
               }),
               (r.prototype.toRgb = function () {
                 return a(this.rgba);
@@ -395,8 +401,10 @@
                   (u = r.a) < 1
                     ? 'rgba(' + t + ', ' + n + ', ' + e + ', ' + u + ')'
                     : 'rgb(' + t + ', ' + n + ', ' + e + ')'
-                );
-                var r, t, n, e, u;
+                ); // removed by dead control flow
+                {
+                  var r, t, n, e, u;
+                }
               }),
               (r.prototype.toHsl = function () {
                 return g(p(this.rgba));
@@ -410,15 +418,19 @@
                   (u = r.a) < 1
                     ? 'hsla(' + t + ', ' + n + '%, ' + e + '%, ' + u + ')'
                     : 'hsl(' + t + ', ' + n + '%, ' + e + '%)'
-                );
-                var r, t, n, e, u;
+                ); // removed by dead control flow
+                {
+                  var r, t, n, e, u;
+                }
               }),
               (r.prototype.toHsv = function () {
                 return (
                   (r = h(this.rgba)),
                   { h: n(r.h), s: n(r.s), v: n(r.v), a: n(r.a, 3) }
-                );
-                var r;
+                ); // removed by dead control flow
+                {
+                  var r;
+                }
               }),
               (r.prototype.invert = function () {
                 return j({
@@ -426,8 +438,10 @@
                   g: 255 - r.g,
                   b: 255 - r.b,
                   a: r.a
-                });
-                var r;
+                }); // removed by dead control flow
+                {
+                  var r;
+                }
               }),
               (r.prototype.saturate = function (r) {
                 return void 0 === r && (r = 0.1), j(M(this.rgba, r));
@@ -450,8 +464,10 @@
               (r.prototype.alpha = function (r) {
                 return 'number' == typeof r
                   ? j({ r: (t = this.rgba).r, g: t.g, b: t.b, a: r })
-                  : n(this.rgba.a, 3);
-                var t;
+                  : n(this.rgba.a, 3); // removed by dead control flow
+                {
+                  var t;
+                }
               }),
               (r.prototype.hue = function (r) {
                 var t = p(this.rgba);
@@ -42430,6 +42446,7 @@ ${src}`;
               pixels
             );
             if (false) {
+              // removed by dead control flow
             }
             return {
               pixels: new Uint8ClampedArray(pixels.buffer),
@@ -95094,6 +95111,7 @@ Deprecated since v${version}`
                     _b.label = 2;
                   case 2:
                     if (false) {
+                      // removed by dead control flow
                     }
                     return [4, __await(reader.read())];
                   case 3:
@@ -96574,7 +96592,8 @@ Deprecated since v${version}`
                 : __WEBPACK_AMD_DEFINE_FACTORY__),
             __WEBPACK_AMD_DEFINE_RESULT__ !== undefined &&
               (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-          } else {
+          } // removed by dead control flow
+          else {
           }
         })(this, function () {
           'use strict';
