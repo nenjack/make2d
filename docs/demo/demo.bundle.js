@@ -47559,6 +47559,14 @@ Deprecated since v${version}`
            * the api to free class instances to prevent eventual oom
            * @param Class the class to search for in DIContainer
            */
+          static freeInstance(Class, props) {
+            const propertyKey = DIContainer.createPropertyKey(props);
+            delete DIContainer.instances[Class.name][propertyKey];
+          }
+          /**
+           * the api to free class instances to prevent eventual oom
+           * @param Class the class to search for in DIContainer
+           */
           static freeInstances(Class) {
             DIContainer.instances[Class.name] = {};
           }
@@ -47671,12 +47679,14 @@ Deprecated since v${version}`
           /*! ./di-container */ './node_modules/inject.min/dist/di-container.js'
         );
         function Inject(Class, props) {
-          return function (target, propertyKey) {
+          return function inject(target, propertyKey) {
             Object.defineProperty(target, propertyKey, {
               get: () => di_container_1.DIContainer.getInstance(Class, props),
-              enumerable: true,
-              configurable: true
+              set: () => di_container_1.DIContainer.freeInstance(Class, props),
+              configurable: true,
+              enumerable: true
             });
+            return target;
           };
         }
 
