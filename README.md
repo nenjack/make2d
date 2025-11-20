@@ -11,7 +11,7 @@ Check out the [demo sandbox](https://jackie-aniki.github.io/make2d/demo/?fps&deb
 ```
 [pixi WebGL Canvas]
 └──[Scene]
-   ├──[Collision Detection]
+   └──[Collision Detection]
       └──[GameObject x 50]
           ├──[Body]
           └──[Animator]
