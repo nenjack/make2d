@@ -67,17 +67,12 @@ gameObject.update$
 
 Check out the [demo sandbox](https://jackie-aniki.github.io/make2d/demo/?fps&debug) to see below code in action.
 
-## Features
+## Demo Code
 
-- [Lifecycle cleanup trees](https://www.html5gamedevs.com/topic/44780-best-way-to-remove-objects-from-the-stage/)
-- [Collision Detection](https://npmjs.com/package/check2d)
-- [WebGL with pixi.js](https://npmjs.com/package/pixi.js)
-- [rxjs events - update, destroy](https://www.learnrxjs.io/learn-rxjs/subjects)
-- [Unity-inspired architecture](https://docs.unity3d.com/Manual/CreatingGameplay.html)
-- [State management](https://gamedevelopment.tutsplus.com/tutorials/finite-state-machines-theory-and-implementation--gamedev-11867)
-- Can be used with pixi versions: `>=6, <=8`
+- [src/demo/index.ts](src/demo/index.ts)
+- [src/demo/sprite.prefab.ts](src/demo/sprite.prefab.ts)
 
-## This FrameWork exports all those
+## This FrameWork exports
 
 - **Lifecycle**: base class for managing destroying whole branches of object-tree
 - **Component**: base of anything
@@ -104,8 +99,3 @@ yarn add -D make2d
 ## API Docs
 
 Here is the in-depth [api documentation](https://jackie-aniki.github.io/make2d/modules.html) easy to browse.
-
-## Demo Code
-
-- [src/demo/index.ts](src/demo/index.ts)
-- [src/demo/sprite.prefab.ts](src/demo/sprite.prefab.ts)
