@@ -1,6 +1,6 @@
 # make2d
 
-Game FrameWork for JavaScript 2D WebGL Canvas Games
+Game FrameWork for JavaScript 2D WebGL Games. Unity-inspired architecture: GameObject, Physics, Body, Container, Sprite, Animator, StateMachine, TextureAtlas, Resources loading.
 
 ## Demo SandBox
 
@@ -9,13 +9,13 @@ Check out the [demo sandbox](https://jackie-aniki.github.io/make2d/demo/?fps&deb
 ## Demo Structure
 
 ```
-[1x Scene]
-  ├──[1x WebGL Canvas (pixi.js)]
-  ├──[1x Collision Detection]
-  └──[50x GameObject (Player)]
-       ├──[1x CircleBody]
-       └──[1x Animator]
-            └──[1x StateMachine]
+[pixi WebGL Canvas]
+└──[Scene]
+   ├──[Collision Detection]
+      └──[GameObject x 50]
+          ├──[Body]
+          └──[Animator]
+             └──[StateMachine]
 ```
 
 ## Features
