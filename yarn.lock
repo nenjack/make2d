@@ -1310,6 +1310,16 @@
   dependencies:
     undici-types "~7.16.0"
 
+"@types/rbush@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/rbush/-/rbush-4.0.0.tgz#b327bf54952e9c924ea6702c36904c2ce1d47f35"
+  integrity sha512-+N+2H39P8X+Hy1I5mC6awlTX54k3FhiUmvt7HWzGJZvF+syUAAxP/stwppS8JE84YHqFgRMv6fCy31202CMFxQ==
+
+"@types/sat@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/@types/sat/-/sat-0.0.35.tgz#c53f55c568506f53a89ec448fd00d8be1e8abc83"
+  integrity sha512-e6hhgprjvfncsniUtblt2Q8yV+cMf/Vqxl4CrnhkwPML4Lb7F+1fMNZs+UJ4L6yp2j/vDH8oHpNaubM0rgHXTQ==
+
 "@types/stack-utils@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.3.tgz#6209321eb2c1712a7e7466422b8cb1fc0d9dd5d8"
@@ -2010,11 +2020,13 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-check2d@^9.36.2:
-  version "9.36.2"
-  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.2.tgz#4cc89fba2cdd762ac4e38b121af0ce5b72f75125"
-  integrity sha512-ecw3JanXI0vtAyg6qUdLqF5j1BM4+QoNSu87gCm5frBq15oLvOEp/zGP9Y2vSxKLGD30s+q1Vog+THNb3PPpwQ==
+check2d@^9.36.3:
+  version "9.36.3"
+  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.3.tgz#8ecb9c24a0f0f77e81c3260411679a7a40a0aae7"
+  integrity sha512-MHbrO/+YdrkA5P0gX7Jxe3z/SeeC2yXEPEf6C/7EIWzyeF/PgzIcGzvnbiqilsWXLZd/g5bNZ1/tYDZztNqR9Q==
   dependencies:
+    "@types/rbush" "^4.0.0"
+    "@types/sat" "^0.0.35"
     poly-decomp-es "^0.4.2"
     sat "^0.9.0"
 
