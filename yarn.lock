@@ -1310,11 +1310,6 @@
   dependencies:
     undici-types "~7.16.0"
 
-"@types/sat@^0.0.35":
-  version "0.0.35"
-  resolved "https://registry.yarnpkg.com/@types/sat/-/sat-0.0.35.tgz#c53f55c568506f53a89ec448fd00d8be1e8abc83"
-  integrity sha512-e6hhgprjvfncsniUtblt2Q8yV+cMf/Vqxl4CrnhkwPML4Lb7F+1fMNZs+UJ4L6yp2j/vDH8oHpNaubM0rgHXTQ==
-
 "@types/stack-utils@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.3.tgz#6209321eb2c1712a7e7466422b8cb1fc0d9dd5d8"
@@ -2015,12 +2010,11 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-check2d@^9.36.0:
-  version "9.36.0"
-  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.0.tgz#e89d337b0b035031cc0858615d953b75ae795a2b"
-  integrity sha512-hXSExwin2QRPmMFdZqK0HlYCDl8xU9WrCVmI2WNReb9K1bhgOfZyHyyWDoJoDjLjKJKJkWsLj4d2fie043O/Nw==
+check2d@^9.36.2:
+  version "9.36.2"
+  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.2.tgz#4cc89fba2cdd762ac4e38b121af0ce5b72f75125"
+  integrity sha512-ecw3JanXI0vtAyg6qUdLqF5j1BM4+QoNSu87gCm5frBq15oLvOEp/zGP9Y2vSxKLGD30s+q1Vog+THNb3PPpwQ==
   dependencies:
-    "@types/sat" "^0.0.35"
     poly-decomp-es "^0.4.2"
     sat "^0.9.0"
 
@@ -3981,10 +3975,10 @@ pixi-shim@^2.6.2:
     jsdom "24.1.0"
     jsdom-global "*"
 
-pixi-stats@^5.1.5:
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/pixi-stats/-/pixi-stats-5.1.5.tgz#af18582d433cb43e93e3f4b0786e58aab44ed6b1"
-  integrity sha512-xkqMHjl2fCqMyn3nh1MPpbc010PC8mrEOVqB+BBfI8stC7CBjWpbGLAXvwdPBINJIg9l/s+Xj4IzdKWFdJDWUA==
+pixi-stats@^5.1.7:
+  version "5.1.7"
+  resolved "https://registry.yarnpkg.com/pixi-stats/-/pixi-stats-5.1.7.tgz#b9802e6f7063bb36b801fc96a4453b6fd33fbaca"
+  integrity sha512-h0FQnZfGPuTg5rVKkCbWD1aLni7sVn+ZaRIzoUsNZzK8FyXI2xARBiILOK76KKjhzS9rAJcneUpXOvzo+wIM2Q==
 
 pixi.js-legacy@^7:
   version "7.4.3"
@@ -4840,10 +4834,10 @@ webpack-sources@^3.3.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.3.3.tgz#d4bf7f9909675d7a070ff14d0ef2a4f3c982c723"
   integrity sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==
 
-webpack@^5.104.0:
-  version "5.104.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.104.0.tgz#2b919a4f2526cdc42731142ae295019264fcfb76"
-  integrity sha512-5DeICTX8BVgNp6afSPYXAFjskIgWGlygQH58bcozPOXgo2r/6xx39Y1+cULZ3gTxUYQP88jmwLj2anu4Xaq84g==
+webpack@^5.104.1:
+  version "5.104.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.104.1.tgz#94bd41eb5dbf06e93be165ba8be41b8260d4fb1a"
+  integrity sha512-Qphch25abbMNtekmEGJmeRUhLDbe+QfiWTiqpKYkpCOWY64v9eyl+KRRLmqOFA2AvKPpc9DC6+u2n76tQLBoaA==
   dependencies:
     "@types/eslint-scope" "^3.7.7"
     "@types/estree" "^1.0.8"
