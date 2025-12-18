@@ -20,38 +20,38 @@ After making countless indie games, dozens made in html5 webgl, I like to have i
 
 ### Lifecycle management solution
 
-- So, [all classes](https://jackie-aniki.github.io/make2d/hierarchy.html#Lifecycle) of this framework implement [LifecycleProps](https://jackie-aniki.github.io/make2d/interfaces/LifecycleProps.html).
+- So, [all classes](https://nenjack.github.io/make2d/hierarchy.html#Lifecycle) of this framework implement [LifecycleProps](https://nenjack.github.io/make2d/interfaces/LifecycleProps.html).
 - When a Lifecycle is destroyed, it emits and closes `destroy$` event subject.
 - Along with destroying his children, which in turn behave the same.
 
 ## Usage
 
 ```ts
-import { Scene, GameObject } from 'make2d';
+import { Scene, GameObject } from 'make2d'
 
 // create a scene
 const scene = new Scene({
   visible: true,
   autoSort: true
-});
+})
 
 // enable physics for scene
 scene.update$.pipe(takeUntil(scene.destroy$)).subscribe(() => {
-  scene.physics.separate();
-});
+  scene.physics.separate()
+})
 
 // create entity
-const gameObject = new GameObject('Entity Name');
+const gameObject = new GameObject('Entity Name')
 
 // add entity to scene
-scene.addChild(gameObject);
+scene.addChild(gameObject)
 
 // rxjs - subscribe to update function until entity is destroyed
 gameObject.update$
   .pipe(takeUntil(gameObject.destroy$))
   .subscribe((deltaTime) => {
-    gameObject.update(gameObject, deltaTime);
-  });
+    gameObject.update(gameObject, deltaTime)
+  })
 ```
 
 ## Demo Structure
@@ -68,7 +68,7 @@ gameObject.update$
 
 ## Demo SandBox
 
-Check out the [demo sandbox](https://jackie-aniki.github.io/make2d/demo/?fps&debug) to see below code in action.
+Check out the [demo sandbox](https://nenjack.github.io/make2d/demo/?fps&debug) to see below code in action.
 
 ## Demo Code
 
@@ -101,4 +101,4 @@ yarn add -D make2d
 
 ## API Docs
 
-Here is the in-depth [api documentation](https://jackie-aniki.github.io/make2d/modules.html) easy to browse.
+Here is the in-depth [api documentation](https://nenjack.github.io/make2d/modules.html) easy to browse.

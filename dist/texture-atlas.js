@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 var __createBinding =
   (this && this.__createBinding) ||
   (Object.create
     ? function (o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
-        var desc = Object.getOwnPropertyDescriptor(m, k);
+        if (k2 === undefined) k2 = k
+        var desc = Object.getOwnPropertyDescriptor(m, k)
         if (
           !desc ||
           ('get' in desc ? !m.__esModule : desc.writable || desc.configurable)
@@ -12,25 +12,25 @@ var __createBinding =
           desc = {
             enumerable: true,
             get: function () {
-              return m[k];
+              return m[k]
             }
-          };
+          }
         }
-        Object.defineProperty(o, k2, desc);
+        Object.defineProperty(o, k2, desc)
       }
     : function (o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
-        o[k2] = m[k];
-      });
+        if (k2 === undefined) k2 = k
+        o[k2] = m[k]
+      })
 var __setModuleDefault =
   (this && this.__setModuleDefault) ||
   (Object.create
     ? function (o, v) {
-        Object.defineProperty(o, 'default', { enumerable: true, value: v });
+        Object.defineProperty(o, 'default', { enumerable: true, value: v })
       }
     : function (o, v) {
-        o['default'] = v;
-      });
+        o['default'] = v
+      })
 var __importStar =
   (this && this.__importStar) ||
   (function () {
@@ -38,26 +38,26 @@ var __importStar =
       ownKeys =
         Object.getOwnPropertyNames ||
         function (o) {
-          var ar = [];
+          var ar = []
           for (var k in o)
-            if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-          return ar;
-        };
-      return ownKeys(o);
-    };
+            if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k
+          return ar
+        }
+      return ownKeys(o)
+    }
     return function (mod) {
-      if (mod && mod.__esModule) return mod;
-      var result = {};
+      if (mod && mod.__esModule) return mod
+      var result = {}
       if (mod != null)
         for (var k = ownKeys(mod), i = 0; i < k.length; i++)
-          if (k[i] !== 'default') __createBinding(result, mod, k[i]);
-      __setModuleDefault(result, mod);
-      return result;
-    };
-  })();
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.TextureAtlas = void 0;
-const PIXI = __importStar(require('pixi.js'));
+          if (k[i] !== 'default') __createBinding(result, mod, k[i])
+      __setModuleDefault(result, mod)
+      return result
+    }
+  })()
+Object.defineProperty(exports, '__esModule', { value: true })
+exports.TextureAtlas = void 0
+const PIXI = __importStar(require('pixi.js'))
 /**
  * for slicing textures into tileset
  */
@@ -80,77 +80,77 @@ class TextureAtlas {
     /**
      * texture slices
      */
-    this.slices = [];
-    this.texture = texture;
-    this.trim = trim;
+    this.slices = []
+    this.texture = texture
+    this.trim = trim
     if (tileWidth && tileHeight) {
-      this.tileWidth = tileWidth;
-      this.tileHeight = tileHeight;
+      this.tileWidth = tileWidth
+      this.tileHeight = tileHeight
     } else if (cols && rows) {
-      this.tileWidth = this.width / cols;
-      this.tileHeight = this.height / rows;
+      this.tileWidth = this.width / cols
+      this.tileHeight = this.height / rows
     } else {
-      throw new Error('Specify tileWidth/tileHeight or cols/rows.');
+      throw new Error('Specify tileWidth/tileHeight or cols/rows.')
     }
-    this.offset = offset;
-    this.scaleMode = scaleMode;
-    this.preload(count);
+    this.offset = offset
+    this.scaleMode = scaleMode
+    this.preload(count)
   }
   /**
    * width read from texture
    */
   get width() {
-    return this.texture.width;
+    return this.texture.width
   }
   /**
    * height read from texture
    */
   get height() {
-    return this.texture.height;
+    return this.texture.height
   }
   /**
    * get lazy cached slice on index
    */
   get(frame) {
     if (typeof headless !== 'undefined') {
-      return PIXI.Texture.WHITE;
+      return PIXI.Texture.WHITE
     }
     if (!this.slices[frame]) {
-      this.loadSlice(frame);
+      this.loadSlice(frame)
     }
-    return this.slices[frame];
+    return this.slices[frame]
   }
   /**
    * used internally in get(frame) to load the slice first time
    */
   loadSlice(slice) {
     if (typeof headless !== 'undefined') {
-      return PIXI.Texture.WHITE;
+      return PIXI.Texture.WHITE
     }
-    const cols = Math.floor(this.width / this.tileWidth);
-    const index = Math.floor(slice - this.offset);
-    const x = (index % cols) * this.tileWidth;
-    const y = Math.floor(index / cols) * this.tileHeight;
+    const cols = Math.floor(this.width / this.tileWidth)
+    const index = Math.floor(slice - this.offset)
+    const x = (index % cols) * this.tileWidth
+    const y = Math.floor(index / cols) * this.tileHeight
     const frame = new PIXI.Rectangle(
       this.trim + x,
       this.trim + y,
       this.tileWidth - this.trim * 2,
       this.tileHeight - this.trim * 2
-    );
+    )
     const texture =
       'source' in this.texture
         ? new PIXI.Texture({
             source: this.texture.source,
             frame
           })
-        : new PIXI.Texture(this.texture.baseTexture, frame);
+        : new PIXI.Texture(this.texture.baseTexture, frame)
     if ('source' in texture) {
-      texture.source.scaleMode = 'nearest';
+      texture.source.scaleMode = 'nearest'
     }
     if ('baseTexture' in texture) {
-      texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+      texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST
     }
-    return texture;
+    return texture
   }
   /**
    * used internally to preload cached slices
@@ -161,12 +161,12 @@ class TextureAtlas {
     )
   ) {
     if (this.slices.length) {
-      throw new Error("Don't call prepare() twice.");
+      throw new Error("Don't call prepare() twice.")
     }
     Array.from({ length: count }, (_, frame) => {
-      const texture = this.loadSlice(frame);
-      this.slices.push(texture);
-    });
+      const texture = this.loadSlice(frame)
+      this.slices.push(texture)
+    })
   }
 }
-exports.TextureAtlas = TextureAtlas;
+exports.TextureAtlas = TextureAtlas

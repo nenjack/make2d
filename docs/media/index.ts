@@ -1,10 +1,10 @@
-import { Resources } from '../resources';
-import { Scene } from '../scene';
-import { create } from './sprite.prefab';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { Resources } from '../resources'
+import { Scene } from '../scene'
+import { create } from './sprite.prefab'
+import { takeUntil } from 'rxjs/internal/operators/takeUntil'
 
 async function start(): Promise<void> {
-  const queryParams = Scene.getQueryParams();
+  const queryParams = Scene.getQueryParams()
 
   // create main Scene
   const scene: Scene = new Scene({
@@ -12,7 +12,7 @@ async function start(): Promise<void> {
     autoSort: true,
     showFPS: 'fps' in queryParams,
     debug: 'debug' in queryParams
-  });
+  })
 
   // initialize scene async - new since pixi 7/8
   await scene.init({
@@ -20,27 +20,27 @@ async function start(): Promise<void> {
     autoDensity: true,
     autoStart: false,
     sharedTicker: false
-  });
+  })
 
   // wait to load cave-boy.json and cave-boy.png, uses PIXI.Loader inside
-  const data = await Resources.loadResource('./cave-boy.json');
-  const texture = await Resources.loadResource(data.tileset);
+  const data = await Resources.loadResource('./cave-boy.json')
+  const texture = await Resources.loadResource(data.tileset)
 
   // create 50 sprites from template
   Array.from({ length: Number(queryParams.limit || 50) }, () => {
-    create({ scene, data, texture });
-  });
+    create({ scene, data, texture })
+  })
 
-  scene.start();
+  scene.start()
   scene.update$.pipe(takeUntil(scene.destroy$)).subscribe(() => {
-    scene.physics.separate();
-  });
+    scene.physics.separate()
+  })
 
-  globalThis.scene = scene;
+  globalThis.scene = scene
 
   if (queryParams.eval) {
-    eval(queryParams.eval);
+    eval(queryParams.eval)
   }
 }
 
-start();
+start()

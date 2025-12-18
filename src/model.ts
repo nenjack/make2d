@@ -1,10 +1,10 @@
 export type PIXITexture = {
-  width: number;
-  height: number;
+  width: number
+  height: number
   // pixi v6
-  name?: string;
-  baseTexture?: any;
+  name?: string
+  baseTexture?: any
   // pixi v8
-  label?: string;
-  source?: { scaleMode: 'nearest' | 'linear' };
-};
+  label?: string
+  source?: { scaleMode: 'nearest' | 'linear' }
+}

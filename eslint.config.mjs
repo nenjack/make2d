@@ -1,5 +1,5 @@
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
@@ -24,4 +24,4 @@ export default [
       ]
     }
   }
-];
+]

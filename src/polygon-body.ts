@@ -1,48 +1,48 @@
-import { BodyOptions, Polygon, Vector } from 'check2d';
-import { Lifecycle, LifecycleParent, LifecycleProps } from './lifecycle';
+import { BodyOptions, Polygon, Vector } from 'check2d'
+import { Lifecycle, LifecycleParent, LifecycleProps } from './lifecycle'
 
-import { GameObject } from './game-object';
-import { Subject } from 'rxjs/internal/Subject';
+import { GameObject } from './game-object'
+import { Subject } from 'rxjs/internal/Subject'
 
 export class PolygonBody extends Polygon implements LifecycleProps {
   /**
    * When Lifecycle Object is updated, it emits this subject.
    * Along with updating his children, which in turn behave the same.
    */
-  readonly update$: Subject<number> = new Subject();
+  readonly update$: Subject<number> = new Subject()
 
   /**
    * When Lifecycle Object is destroyed, it emits and closes this subject.
    * Along with destroying his children, which in turn behave the same.
    */
-  readonly destroy$: Subject<void> = new Subject();
+  readonly destroy$: Subject<void> = new Subject()
 
   /**
    * Parent GameObject is assigned at creation.
    */
-  gameObject: LifecycleParent;
+  gameObject: LifecycleParent
 
   /**
    * Each Lifecycle Object has label for pixi debugging.
    */
-  label = 'PolygonBody';
+  label = 'PolygonBody'
 
   constructor(gameObject: GameObject, points: Vector[], options?: BodyOptions) {
-    super(gameObject, points, options);
-    gameObject.addChild(this);
+    super(gameObject, points, options)
+    gameObject.addChild(this)
   }
 
   /**
    * @param deltaTime = 1.0 for 60FPS
    */
   update(deltaTime: number): void {
-    this.gameObject.x = this.x;
-    this.gameObject.y = this.y;
-    Lifecycle.update(this, deltaTime);
+    this.gameObject.x = this.x
+    this.gameObject.y = this.y
+    Lifecycle.update(this, deltaTime)
   }
 
   destroy(): void {
-    this.system?.remove(this);
-    Lifecycle.destroy(this);
+    this.system?.remove(this)
+    Lifecycle.destroy(this)
   }
 }

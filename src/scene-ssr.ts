@@ -1,18 +1,18 @@
-import { Body, System } from 'check2d';
-import { GameObject, GameObjectParent, TGameObject } from './game-object';
-import { Lifecycle, LifecycleProps } from './lifecycle';
+import { Body, System } from 'check2d'
+import { GameObject, GameObjectParent, TGameObject } from './game-object'
+import { Lifecycle, LifecycleProps } from './lifecycle'
 
-import { Subject } from 'rxjs/internal/Subject';
+import { Subject } from 'rxjs/internal/Subject'
 
-export type PIXIAppOptions = Partial<Record<string, any>>;
+export type PIXIAppOptions = Partial<Record<string, any>>
 
 /**
  * params for debug type
  */
 export interface DebugStroke {
-  color: number;
-  width: number;
-  alpha: number;
+  color: number
+  width: number
+  alpha: number
 }
 
 /**
@@ -22,34 +22,34 @@ export interface SceneOptions extends PIXIAppOptions {
   /**
    * pixi v6
    */
-  view?: HTMLCanvasElement;
+  view?: HTMLCanvasElement
 
   /**
    * set name
    */
-  label?: string;
+  label?: string
 
   /**
    * show scene after creation
    */
-  visible?: boolean;
+  visible?: boolean
 
   /**
    * enables zIndex (per-y) sort of sprites
    */
-  autoSort?: boolean;
+  autoSort?: boolean
 
   /**
    * max size of group in collision tree
    */
-  nodeMaxEntries?: number;
+  nodeMaxEntries?: number
 
   /**
    * set to true to show pixi-stats
    * set to string to show and set style
    * set body font to set font of pixi-stats
    */
-  showFPS?: boolean | string;
+  showFPS?: boolean | string
 
   /**
    * set to true to enable debug bounding boxes
@@ -60,13 +60,13 @@ export interface SceneOptions extends PIXIAppOptions {
         /**
          * optional modify debug stroke
          */
-        debugStroke?: DebugStroke;
+        debugStroke?: DebugStroke
 
         /**
          * optional modify debug bvh stroke
          */
-        debugBVHStroke?: DebugStroke;
-      };
+        debugBVHStroke?: DebugStroke
+      }
 }
 
 /**
@@ -76,97 +76,97 @@ export class SceneSSR<TBody extends Body = Body> extends GameObject {
   /**
    * When Scene Object has children amount changed, it emits this subject.
    */
-  readonly children$: Subject<Lifecycle> = new Subject();
+  readonly children$: Subject<Lifecycle> = new Subject()
 
   /**
    * Options are assigned at creation.
    */
-  readonly options: SceneOptions;
+  readonly options: SceneOptions
 
   /**
    * Scene doesn't have parent gameObject
    */
-  gameObject: GameObjectParent = undefined;
+  gameObject: GameObjectParent = undefined
 
   /**
    * Reference to Collision Detection System.
    */
-  physics: System<TBody>;
+  physics: System<TBody>
 
   /**
    * Scene has last update unix time stored.
    */
-  lastUpdate: number;
+  lastUpdate: number
 
   /**
    * requestAnimationFrame reference.
    */
-  animationFrame = 0;
+  animationFrame = 0
 
   constructor(options: SceneOptions = {}) {
-    super(options.label || 'Scene');
+    super(options.label || 'Scene')
 
-    this.options = options;
-    this.physics = new System<TBody>(options.nodeMaxEntries);
+    this.options = options
+    this.physics = new System<TBody>(options.nodeMaxEntries)
   }
 
   /**
    * Scene doesn't have parent scene
    */
   get scene(): undefined {
-    return undefined;
+    return undefined
   }
 
   async init(_options?: Partial<Record<string, any>>): Promise<boolean> {
-    return true;
+    return true
   }
 
   stop(): void {
     if (this.animationFrame) {
-      cancelAnimationFrame(this.animationFrame);
+      cancelAnimationFrame(this.animationFrame)
     }
   }
 
   start(): void {
-    this.lastUpdate = Date.now();
+    this.lastUpdate = Date.now()
 
     const frame = () => {
-      const now = Date.now();
-      const deltaTime = (now - this.lastUpdate) * 0.06;
+      const now = Date.now()
+      const deltaTime = (now - this.lastUpdate) * 0.06
       // 60 / 1000
-      this.update(deltaTime);
-      this.lastUpdate = now;
+      this.update(deltaTime)
+      this.lastUpdate = now
 
       if (this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
+        cancelAnimationFrame(this.animationFrame)
       }
 
-      this.animationFrame = requestAnimationFrame(frame);
-    };
+      this.animationFrame = requestAnimationFrame(frame)
+    }
 
-    this.animationFrame = requestAnimationFrame(frame);
+    this.animationFrame = requestAnimationFrame(frame)
   }
 
   update(deltaTime: number): void {
-    super.update(deltaTime);
-    this.physics.update();
+    super.update(deltaTime)
+    this.physics.update()
   }
 
   destroy(): void {
-    this.stop();
-    super.destroy();
-    this.children$.complete();
+    this.stop()
+    super.destroy()
+    this.children$.complete()
   }
 
   addChild(...children: LifecycleProps[]): void {
-    super.addChild(...children);
-    this.stageAddChild(...children);
+    super.addChild(...children)
+    this.stageAddChild(...children)
 
     children.forEach(({ body }: TGameObject<any, TBody>) => {
       if (body) {
-        this.physics.insert(body);
+        this.physics.insert(body)
       }
-    });
+    })
   }
 
   stageAddChild(..._children: LifecycleProps[]): void {
@@ -178,15 +178,15 @@ export class SceneSSR<TBody extends Body = Body> extends GameObject {
   }
 
   removeChild(...children: LifecycleProps[]): void {
-    super.removeChild(...children);
-    this.stageRemoveChild(...children);
+    super.removeChild(...children)
+    this.stageRemoveChild(...children)
   }
 
   getChildOfType(type: string): LifecycleProps {
-    return this.children.find(({ label }) => label === type);
+    return this.children.find(({ label }) => label === type)
   }
 
   getChildrenOfType(type: string): LifecycleProps[] {
-    return this.children.filter(({ label }) => label === type);
+    return this.children.filter(({ label }) => label === type)
   }
 }
