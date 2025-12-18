@@ -2,51 +2,37 @@
 
 # [<img src="https://img.shields.io/npm/dw/make2d.svg?style=for-the-badge&color=success" alt="npm downloads per week" />](https://www.npmjs.com/package/make2d) @ [<img src="https://img.shields.io/npm/v/make2d?style=for-the-badge&color=success" alt="npm version" />](https://www.npmjs.com/package/make2d?activeTab=versions)
 
-Game FrameWork for JavaScript 2D WebGL Games. Unity-inspired architecture: GameObject, Physics, Body, Container, Sprite, Animator, StateMachine, TextureAtlas, Resources loading.
+Game Framework for JavaScript 2D WebGL Games.
 
-## Why use this?
+Unity-inspired architecture built on top of **PIXI.js**, focused on
+**lifecycle management**, **collision detection**, and **clean object hierarchies**.
 
-After making countless indie games, dozens made in html5 webgl, I like to have in such:
+- fast and mobile friendly rendering ✔️ (pixi)
+- lifecycle-safe entity hierarchy ✔️
+- efficient collision detection ✔️ (check2d)
+- rxjs-driven update loop ✔️ (rxjs)
 
-1. efficient and mobile friendly drawing ✔️ (pixi)
-2. lifecycle management ✔️ (solution below)
-3. efficient collision detection or physics ✔️ (make2d)
+## demo
 
-### Lifecycle management problem
+https://nenjack.github.io/make2d/demo/
 
-- When you create a game world, its good to organize it in a tree like way of hierarchy of objects.
-- Let's take almost any entity in any game, most likely it has some stuff attached in this hierarchy (a home might have some chairs, a tank might have a driver and ammunition, etc.)
-- If you don't properly manage destroying an entity, stuff it had attached to it will become a memory leak and kill the app.
-
-### Lifecycle management solution
-
-- So, [all classes](https://nenjack.github.io/make2d/hierarchy.html#Lifecycle) of this framework implement [LifecycleProps](https://nenjack.github.io/make2d/interfaces/LifecycleProps.html).
-- When a Lifecycle is destroyed, it emits and closes `destroy$` event subject.
-- Along with destroying his children, which in turn behave the same.
-
-## Usage
+## demo code
 
 ```ts
 import { Scene, GameObject } from 'make2d'
 
-// create a scene
 const scene = new Scene({
   visible: true,
   autoSort: true
 })
 
-// enable physics for scene
 scene.update$.pipe(takeUntil(scene.destroy$)).subscribe(() => {
   scene.physics.separate()
 })
 
-// create entity
 const gameObject = new GameObject('Entity Name')
-
-// add entity to scene
 scene.addChild(gameObject)
 
-// rxjs - subscribe to update function until entity is destroyed
 gameObject.update$
   .pipe(takeUntil(gameObject.destroy$))
   .subscribe((deltaTime) => {
@@ -54,7 +40,33 @@ gameObject.update$
   })
 ```
 
-## Demo Structure
+## why make2d?
+
+While building many indie games (including html5 WebGL titles), a few core needs
+appear repeatedly:
+
+1. drawing that works well on desktop and mobile
+2. predictable lifecycle management
+3. collision detection without memory leaks
+
+### lifecycle management
+
+Every object in a game tends to own other objects
+(e.g. tank → turret → ammo, house → furniture).
+
+If an entity is destroyed without handling its children properly,
+memory leaks will eventually kill the application.
+
+**make2d solves this by design.**
+
+- All framework classes implement `Lifecycle`
+- Destroying an object:
+  - emits and completes `destroy$`
+  - recursively destroys all children
+
+- rxjs subscriptions can be safely bound to lifecycle
+
+## demo structure
 
 ```
 [pixi WebGL Canvas]
@@ -66,39 +78,37 @@ gameObject.update$
              └──[StateMachine]
 ```
 
-## Demo SandBox
+## exports
 
-Check out the [demo sandbox](https://nenjack.github.io/make2d/demo/?fps&debug) to see below code in action.
+make2d provides a small but complete set of building blocks:
 
-## Demo Code
+- **Lifecycle** – base class for destroying whole branches of object tree
+- **Component** – base of all components
+- **GameObject** – Unity-like entity with components
+- **Scene** – main container and entry point
+- **SceneSSR** – scene replacement for node.js
+- **Container** – `PIXI.Container` + `Lifecycle`
+- **Sprite** – `PIXI.Sprite` + `Lifecycle`
+- **Animator** – container of multiple `PIXI.AnimatedSprite`
+- **StateMachine** – simple state management
+- **Resources** – easy-to-use asset loader
+- **Prefab** – declarative entity creation
+- **CircleBody** – circular collider
+- **BoxBody** – rectangular collider
+- **PolygonBody** – polygon collider
+- **TextureAtlas** – atlas frame slicing
 
-- [src/demo/index.ts](src/demo/index.ts)
-- [src/demo/sprite.prefab.ts](src/demo/sprite.prefab.ts)
-
-## This FrameWork exports
-
-- **Lifecycle**: base class for managing destroying whole branches of object-tree
-- **Component**: base of anything
-- **Sprite**: mix of `PIXI.Sprite` and `Lifecycle`
-- **Container**: mix of `PIXI.Container` and `Lifecycle`,
-- **Animator**: container of multiple `PIXI.AnimatedSprite`
-- **GameObject**: basic concept from `Unity`, has components
-- **Prefab**: may be used instead of normal JS instantiation
-- **SceneSSR**: scene replacement in `node.js environment`
-- **Scene**: basic container and `main class`
-- **Resources**: easy to use resources loader
-- **StateMachine**: basic `state management` component
-- **CircleBody**: circular collider for collisions
-- **PolygonBody**: polygonal collider for collisions
-- **BoxBody**: rectangular collider for collisions
-- **TextureAtlas**: for cutting atlases into frames
-
-## Installation
+## installation
 
 ```bash
-yarn add -D make2d
+yarn add make2d
 ```
 
-## API Docs
+## docs
 
-Here is the in-depth [api documentation](https://nenjack.github.io/make2d/modules.html) easy to browse.
+- API reference: [https://nenjack.github.io/make2d/modules.html](https://nenjack.github.io/make2d/modules.html)
+- Lifecycle docs: [https://nenjack.github.io/make2d/hierarchy.html](https://nenjack.github.io/make2d/hierarchy.html)
+
+## license
+
+MIT
