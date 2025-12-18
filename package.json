@@ -1,7 +1,7 @@
 {
   "name": "make2d",
   "description": "Game FrameWork for JavaScript 2D WebGL Canvas Games",
-  "version": "9.37.2",
+  "version": "9.38.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@pietal.dev/cache": "^2.0.2",
-    "check2d": "^9.35.3",
+    "check2d": "^9.36.0",
     "inject.min": "^2.1.3",
-    "pixi-stats": "^5.1.2"
+    "pixi-stats": "^5.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",

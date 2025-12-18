@@ -2015,10 +2015,10 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-check2d@^9.35.3:
-  version "9.35.3"
-  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.35.3.tgz#d49e200bea4f21cb8d610098d64c30e742b31307"
-  integrity sha512-pKitS75t1iYYVGqeytbzcVQYdZOl9aTtM/qGRO1qEasX7PwvQXcfqiVaoAzGSKN1TFkDfQ9EeN6xXEYFokd5aQ==
+check2d@^9.36.0:
+  version "9.36.0"
+  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.0.tgz#e89d337b0b035031cc0858615d953b75ae795a2b"
+  integrity sha512-hXSExwin2QRPmMFdZqK0HlYCDl8xU9WrCVmI2WNReb9K1bhgOfZyHyyWDoJoDjLjKJKJkWsLj4d2fie043O/Nw==
   dependencies:
     "@types/sat" "^0.0.35"
     poly-decomp-es "^0.4.2"
@@ -3981,10 +3981,10 @@ pixi-shim@^2.6.2:
     jsdom "24.1.0"
     jsdom-global "*"
 
-pixi-stats@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/pixi-stats/-/pixi-stats-5.1.2.tgz#34844f918e454a7a482946a34f5d2785d9547518"
-  integrity sha512-sPgEhvjFqWmnbD8+kLDn+CySHs/qNBFvicwnu2fDAkbcUF4vvxtArpM/1ymiZQm5HuzWC8ZOYvy1jd3m8rLzaA==
+pixi-stats@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/pixi-stats/-/pixi-stats-5.1.3.tgz#f9d93995c5d435f0f59b39c647aaf73c5b0126ad"
+  integrity sha512-zvoomSGNpyQO0N5wfy/y80oYHZw6PIpgwtNRHkSVV3R2HvBRWYBuAUo6OPlae61B6kNY4V9H5SBNxi7sJAMd1A==
 
 pixi.js-legacy@^7:
   version "7.4.3"
