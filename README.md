@@ -1,31 +1,44 @@
 # make2d
 
-# [<img src="https://img.shields.io/npm/dw/make2d.svg?style=for-the-badge&color=success" alt="npm downloads per week" />](https://www.npmjs.com/package/make2d) @ [<img src="https://img.shields.io/npm/v/make2d?style=for-the-badge&color=success" alt="npm version" />](https://www.npmjs.com/package/make2d?activeTab=versions)
+## [<img valign="middle" src="https://img.shields.io/npm/dw/make2d.svg?style=for-the-badge&color=success" alt="npm downloads per week" />](https://www.npmjs.com/package/make2d) @ [<img valign="middle" src="https://img.shields.io/npm/v/make2d?style=for-the-badge&color=success" alt="npm version" />](https://www.npmjs.com/package/make2d?activeTab=versions)
 
-Game Framework for JavaScript 2D WebGL Games.
+**make2d** is a lightweight game framework for building **2D WebGL games in JavaScript**.
 
-Unity-inspired architecture built on top of **PIXI.js**, focused on
-**lifecycle management**, **collision detection**, and **clean object hierarchies**.
+It provides a **Unity-inspired architecture** on top of **PIXI.js**, focusing on:
 
-- fast and mobile friendly rendering ✔️ (pixi)
-- lifecycle-safe entity hierarchy ✔️
-- efficient collision detection ✔️ (check2d)
-- rxjs-driven update loop ✔️ (rxjs)
+- predictable **object hierarchy**
+- **safe lifecycle management**
+- efficient **collision detection**
+- reactive, composable **update loops**
+
+### highlights
+
+- fast, mobile-friendly rendering (PIXI.js)
+- Unity-like scene & entity hierarchy
+- lifecycle-safe object destruction
+- efficient 2D collision system (check2d)
+- RxJS-driven update & event model
+
+---
 
 ## demo
 
-https://nenjack.github.io/make2d/demo/
+👉 https://nenjack.github.io/make2d/demo/?fps&debug
+
+---
 
 ## demo code
 
 ```ts
 import { Scene, GameObject } from 'make2d'
+import { takeUntil } from 'rxjs'
 
 const scene = new Scene({
   visible: true,
   autoSort: true
 })
 
+// scene-level update loop
 scene.update$.pipe(takeUntil(scene.destroy$)).subscribe(() => {
   scene.physics.separate()
 })
@@ -33,6 +46,7 @@ scene.update$.pipe(takeUntil(scene.destroy$)).subscribe(() => {
 const gameObject = new GameObject('Entity Name')
 scene.addChild(gameObject)
 
+// game object update loop
 gameObject.update$
   .pipe(takeUntil(gameObject.destroy$))
   .subscribe((deltaTime) => {
@@ -40,63 +54,95 @@ gameObject.update$
   })
 ```
 
-## why make2d?
-
-While building many indie games (including html5 WebGL titles), a few core needs
-appear repeatedly:
-
-1. drawing that works well on desktop and mobile
-2. predictable lifecycle management
-3. collision detection without memory leaks
-
-### lifecycle management
-
-Every object in a game tends to own other objects
-(e.g. tank → turret → ammo, house → furniture).
-
-If an entity is destroyed without handling its children properly,
-memory leaks will eventually kill the application.
-
-**make2d solves this by design.**
-
-- All framework classes implement `Lifecycle`
-- Destroying an object:
-  - emits and completes `destroy$`
-  - recursively destroys all children
-
-- rxjs subscriptions can be safely bound to lifecycle
+---
 
 ## demo structure
 
 ```
-[pixi WebGL Canvas]
-└──[Scene]
-   └──[Collision Detection]
-      └──[GameObject x 50]
-          ├──[Body]
-          └──[Animator]
-             └──[StateMachine]
+[HTML5 Canvas + WebGL]
+└── [Scene]
+    └── [Collision System]
+        └── [GameObject x 50]
+            ├── [Body]
+            └── [Animator]
+                └── [StateMachine]
 ```
+
+The hierarchy and API are intentionally similar to Unity, making it easy to reason about complex scenes.
+
+## why make2d?
+
+When building multiple indie and HTML5 WebGL games, a few recurring problems show up:
+
+1. managing deeply nested game entities
+2. avoiding memory leaks during object destruction
+3. keeping update logic predictable and composable
+
+**make2d addresses these by design**, using a strict hierarchy and lifecycle model inspired by Unity.
+
+---
+
+## lifecycle & update model
+
+Every object in make2d participates in a **tree-based lifecycle**.
+
+Examples:
+
+- `tank → turret → ammo`
+- `house → furniture → props`
+
+### lifecycle guarantees
+
+- All framework classes implement **`Lifecycle`**
+- Destroying any object:
+  - emits and completes `destroy$`
+  - recursively destroys all children
+
+- RxJS subscriptions can safely bind to `destroy$`
+
+### update propagation
+
+- Every object exposes an **`update$`** observable
+- Updates flow **top-down through the hierarchy**
+- When a parent updates, all children  valign="middle"update automatically
+- `deltaTime` is provided each frame
+
+This makes it easy to compose behavior without manual bookkeeping.
+
+---
 
 ## exports
 
 make2d provides a small but complete set of building blocks:
 
-- **Lifecycle** – base class for destroying whole branches of object tree
-- **Component** – base of all components
-- **GameObject** – Unity-like entity with components
-- **Scene** – main container and entry point
-- **SceneSSR** – scene replacement for node.js
-- **Container** – `PIXI.Container` + `Lifecycle`
-- **Sprite** – `PIXI.Sprite` + `Lifecycle`
-- **Animator** – container of multiple `PIXI.AnimatedSprite`
-- **StateMachine** – simple state management
-- **Resources** – easy-to-use asset loader
+### core
+
+- **Lifecycle** – destroy entire branches safely
+- **Component** – base class for attachable behavior
+- **GameObject** – Unity-like entity container
+- **Scene** – root container and game entry point
+- **SceneSSR** – Scene replacement for Node.js
+
+### rendering & containers
+
+- **Container** – `PIXI.Container` + lifecycle
+- **Sprite** – `PIXI.Sprite` + lifecycle
+- **Animator** – manages multiple `PIXI.AnimatedSprite`
+- **TextureAtlas** – atlas frame slicing
+
+### state & structure
+
+- **StateMachine** – simple state handling
 - **Prefab** – declarative entity creation
+- **Resources** – asset loader
+
+### physics
+
 - **CircleBody** – circular collider
 - **BoxBody** – rectangular collider
 - **PolygonBody** – polygon collider
-- **TextureAtlas** – atlas frame slicing
+
+---
 
 ## installation
 
@@ -104,10 +150,16 @@ make2d provides a small but complete set of building blocks:
 yarn add make2d
 ```
 
-## docs
+---
 
-- API reference: [https://nenjack.github.io/make2d/modules.html](https://nenjack.github.io/make2d/modules.html)
-- Lifecycle docs: [https://nenjack.github.io/make2d/hierarchy.html](https://nenjack.github.io/make2d/hierarchy.html)
+## documentation
+
+- API reference
+  https://nenjack.github.io/make2d/modules.html
+- Lifecycle & hierarchy
+  https://nenjack.github.io/make2d/hierarchy.html
+
+---
 
 ## license
 
