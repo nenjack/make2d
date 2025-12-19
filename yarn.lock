@@ -2020,10 +2020,10 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-check2d@^9.36.3:
-  version "9.36.3"
-  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.3.tgz#8ecb9c24a0f0f77e81c3260411679a7a40a0aae7"
-  integrity sha512-MHbrO/+YdrkA5P0gX7Jxe3z/SeeC2yXEPEf6C/7EIWzyeF/PgzIcGzvnbiqilsWXLZd/g5bNZ1/tYDZztNqR9Q==
+check2d@^9.36.4:
+  version "9.36.4"
+  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.36.4.tgz#3086e56a311140cbcfc45faf225afda1772dcde9"
+  integrity sha512-z1p2X7V3Mw1PwW/QRIe58ehDbUPNHmUwr3v3b5IeylOZDMoVOm3o1AJaFUZFs9EKMgzPuviC3/F745jhrr3ccQ==
   dependencies:
     "@types/rbush" "^4.0.0"
     "@types/sat" "^0.0.35"
