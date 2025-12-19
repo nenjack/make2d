@@ -102,9 +102,9 @@ Examples:
 
 ### update propagation
 
-- Every object exposes an **`update$`** observable
+- Every object exposes an `update$` observable
 - Updates flow **top-down through the hierarchy**
-- When a parent updates, all children  valign="middle"update automatically
+- When a parent updates, all children update automatically
 - `deltaTime` is provided each frame
 
 This makes it easy to compose behavior without manual bookkeeping.

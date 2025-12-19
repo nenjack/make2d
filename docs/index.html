@@ -54,9 +54,9 @@
 </li>
 </ul>
 <h3 id="update-propagation" class="tsd-anchor-link">update propagation<a href="#update-propagation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
-<li>Every object exposes an <strong><code>update$</code></strong> observable</li>
+<li>Every object exposes an <code>update$</code> observable</li>
 <li>Updates flow <strong>top-down through the hierarchy</strong></li>
-<li>When a parent updates, all children  valign=&quot;middle&quot;update automatically</li>
+<li>When a parent updates, all children update automatically</li>
 <li><code>deltaTime</code> is provided each frame</li>
 </ul>
 <p>This makes it easy to compose behavior without manual bookkeeping.</p>
