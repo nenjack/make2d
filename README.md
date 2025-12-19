@@ -70,6 +70,8 @@ gameObject.update$
 
 The hierarchy and API are intentionally similar to Unity, making it easy to reason about complex scenes.
 
+---
+
 ## why make2d?
 
 When building multiple indie and HTML5 WebGL games, a few recurring problems show up:
